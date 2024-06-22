@@ -19,7 +19,7 @@ Végppontok teszteléséhez ajánlott szoftver: [Postman](https://postman.com)
     -Termék lekérése (azonosító alapján)
     -Termék módosítása
 
-##Végpontok
+## Végpontok
 |  Végpont                 | Kérés | Paraméterek    |          Leírás            |
 |--------------------------|-------|----------------|----------------------------|
 |**/category**             | GET   |-               |Látható kategóriák listázása|
