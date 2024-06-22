@@ -13,7 +13,7 @@ class Request
 	}
 	public static function post($name, $default = '')
 	{
-		if(isset($_POST[$name]) && !empty($_POST[$name]))
+		if(isset($_POST[$name]) && $_POST[$name] != '')
 		{
 			return $_POST[$name];
 		}
