@@ -7,17 +7,17 @@ Végppontok teszteléséhez ajánlott szoftver: [Postman](https://postman.com)
 ## Műveletek
 
 - Termék-kategóriákhoz kapcsolódó
-        - Kategória létrehozása
-        - Kategória listázása (láthatók)
-        - Minden kategória listázása (rejtettek is)
-        - Kategória lekérése (azonosító alapján)
-        - Kategória módosítása
+    - Kategória létrehozása
+    - Kategória listázása (láthatók)
+    - Minden kategória listázása (rejtettek is)
+    - Kategória lekérése (azonosító alapján)
+    - Kategória módosítása
 - Termékekhez kapcsolódó
-        - Termék létrehozása
-        - Termék listázása (elérhető)
-        - Minden termék listázása (a nem elérhetőek is)
-        - Termék lekérése (azonosító alapján)
-        - Termék módosítása
+    - Termék létrehozása
+    - Termék listázása (elérhető)
+    - Minden termék listázása (a nem elérhetőek is)
+    - Termék lekérése (azonosító alapján)
+    - Termék módosítása
 
 ## Végpontok
 |  Végpont                 | Kérés | Paraméterek    |          Leírás            |
