@@ -9,7 +9,7 @@ class Api
 		Response::setupHeaders();
 		
 		$className = self::getControllerClassName($controller);
-		if(class_exists($className))
+		if($className && class_exists($className))
 		{
 			if(method_exists($className, $action))
 			{
@@ -36,7 +36,11 @@ class Api
 	}
 	private static function getControllerClassName($controller)
 	{
-		return 'App\\'.ucfirst($controller) .'Controller';
+		if($controller)
+		{
+			return 'App\\'.ucfirst($controller) .'Controller';
+		}
+		return '';
 	}
 	private static function setupErrorHandler()
 	{

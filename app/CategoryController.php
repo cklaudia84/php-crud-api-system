@@ -40,9 +40,13 @@ class CategoryController
 	{
 		if(Req::hasPostMethod())
 		{
-			$category = Srv::createCategoryByPostBody(true);
-			Srv::updateCategory($id, $category);
-			return ('Category updated');
+			if($id)
+			{
+				$category = Srv::createCategoryByPostBody(true);
+				Srv::updateCategory($id, $category);
+				return 'Category updated';
+			}
+			Resp::send('Wrong parameters', 400);
 		}
 		Resp::send('Wrong method', 405);
 	}

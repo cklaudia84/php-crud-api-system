@@ -3,20 +3,22 @@ namespace App;
 
 use System\Request as Req;
 use System\Response as Resp;
-use System\Database as DB;
-
+use App\Services\ProductService as Srv;
 
 class ProductController
 {
-	public static function main() 
+	public static function main($filter) 
 	{
-		return ['Product', 'Main'];
+		return Srv::getProducts($filter);
 	}
-	public static function create() 
+	public static function create($categoryId) 
 	{
 		if(Req::hasPostMethod())
         {
-            Resp::send(['Product', 'Create'], 201);
+			$product = Srv::createProductByPostBody();
+			Srv::createProduct($categoryId, $product);
+			
+            Resp::send('Product created', 201);
         }
         else
         {
@@ -25,8 +27,32 @@ class ProductController
 	}
 	public static function get($id) 
 	{
-		//throw new \Exception('Valami nem jó');
-        return ['Product', 'Get', $id];
+		if($id)
+		{
+			$product = Srv::getProductById($id);
+		
+			if($product)
+			{
+				return $product;
+
+			}
+			Resp::send('Category not found', 404);	
+		}
+		Resp::send('Wrong parameters', 400);
+	}
+	public static function update($id)
+	{
+		if(Req::hasPostMethod())
+		{
+			if($id)
+			{
+				$product = Srv::createProductByPostBody(true);
+				Srv::updateProduct($id, $product);
+				return 'Product updated';
+			}
+			Resp::send('Wrong parameters', 400);
+		}
+		Resp::send('Wrong method', 405);
 	}
 }
 
