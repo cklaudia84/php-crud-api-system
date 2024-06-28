@@ -11,6 +11,21 @@ class ProductController
 	{
 		return Srv::getProducts($filter);
 	}
+	public static function in_category($categoryId)
+	{
+		$category = CategoryController::get($categoryId);
+	/*$category = Services\CategoryService::getCategoryById($categoryId);
+	if(!$category)
+	{
+		Resp::send('Category not found', 404);
+	}*/
+		$products = Srv::getProductsInCategory($categoryId);
+	
+		return [
+		'category' => $category,
+		'products' => $products
+	];
+	}
 	public static function create($categoryId) 
 	{
 		if(Req::hasPostMethod())

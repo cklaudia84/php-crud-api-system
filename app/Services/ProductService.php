@@ -23,10 +23,10 @@ class ProductService
 	}
 	public static function getProductById($id)
 	{
-		$sql = "SELECT prod.id, prod.name, price, stock, category, cat.name AS category_name 
-			FROM api__products AS prod
-			INNER JOIN api__categories AS cat ON cat.id = prod.category
-				WHERE prod.id = :id AND stock > 0 AND visible != 0";
+			$sql = "SELECT prod.id, prod.name, price, stock, category, cat.name AS category_name 
+					FROM api__products AS prod
+					INNER JOIN api__categories AS cat ON cat.id = prod.category 
+					WHERE prod.id = :id AND stock > 0 AND visible != 0";
 		$product = DB::query($sql, ['id' => $id], false);
 		
 		if($product)
@@ -35,6 +35,17 @@ class ProductService
 		}
 		return $product;
 	}
+	public static function getProductsInCategory($categoryId) 
+	{
+			$sql = "SELECT prod.id, prod.name, price, stock 
+			FROM api__products AS prod
+			INNER JOIN api__categories AS cat ON cat.id = prod.category
+			WHERE stock > 0 AND visible != 0 AND category = :category
+			ORDER BY prod.name";
+		
+		return DB::query($sql, ['category' => $categoryId]);
+	}
+
 	public static function createProduct($categoryId, $product)
 	{
 		$sql = "INSERT INTO api__products VALUES (NULL, :category, :name, :price, :stock)";
